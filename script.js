@@ -1,5 +1,5 @@
 // =====================================================================
-// MAYRA.exe — Birthday Edition V3
+// MAYRA.exe — Birthday Edition V3.1 Mobile Final
 // AQUÍ ESTÁN LAS PARTES MÁS FÁCILES DE EDITAR.
 // =====================================================================
 
@@ -10,6 +10,42 @@
 // ==========================================================
 const tripDate = "2026-09-13T09:00:00";
 
+// ------------------------------------------------------------
+// SPOTIFY SOUNDTRACK
+// Preloads before GO so the GO tap can directly call play().
+// ------------------------------------------------------------
+let spotifyController = null;
+let enteredExperience = false;
+
+window.onSpotifyIframeApiReady = (IFrameAPI) => {
+  const element = document.getElementById("spotifyEmbed");
+  if (!element) return;
+
+  IFrameAPI.createController(element, {
+    width: "100%",
+    height: "152",
+    uri: "spotify:track:0FlwhvrncUKrEAhzunmCKm"
+  }, (controller) => {
+    spotifyController = controller;
+    if (enteredExperience) tryStartSoundtrack();
+  });
+};
+
+function tryStartSoundtrack() {
+  const fallback = document.getElementById("spotifyFallback");
+  if (!spotifyController) {
+    fallback?.classList.remove("hidden");
+    return;
+  }
+  try {
+    spotifyController.play();
+    window.setTimeout(() => fallback?.classList.remove("hidden"), 1400);
+  } catch {
+    fallback?.classList.remove("hidden");
+  }
+}
+
+
 // ==========================================================
 // 29 THINGS I LOVE ABOUT YOU
 // Puedes editar cada frase aquí.
@@ -17,35 +53,35 @@ const tripDate = "2026-09-13T09:00:00";
 // Mantén idealmente 29 elementos.
 // ==========================================================
 const reasons = [
-  "Porque haces que los días normales se sientan mucho mejor.",
-  "Porque tu sonrisa cambia por completo la energía del lugar.",
-  "Porque tienes una forma muy tuya de hacer todo más divertido.",
-  "Porque contigo las conversaciones nunca se sienten vacías.",
-  "Porque me encanta tu vibra entre aventurera, bonita y caótica.",
-  "Porque siempre hay algo en ti que me sorprende.",
-  "Porque sabes disfrutar los pequeños momentos.",
-  "Porque eres tú, sin copia.",
-  "Porque me gusta cómo se siente estar contigo.",
-  "Porque haces que hasta los planes simples se sientan especiales.",
-  "Porque admiro tu energía.",
-  "Porque tu presencia se nota de la mejor forma.",
-  "Porque tienes un corazón bonito.",
-  "Porque me gusta verte emocionada por cosas que te gustan.",
-  "Porque me encanta cuando te ríes de verdad.",
-  "Porque haces que quiera crear recuerdos bonitos.",
-  "Porque contigo hay ternura y hay fuego al mismo tiempo.",
-  "Porque eres linda por dentro y por fuera.",
-  "Porque hay una suavidad en ti que no es fácil de explicar.",
-  "Porque me haces querer ponerle intención a las cosas.",
-  "Porque me gusta consentirte.",
-  "Porque me gusta hacer cosas pensadas para ti.",
-  "Porque tienes algo que simplemente jala.",
-  "Porque contigo sí dan ganas de planear.",
-  "Porque haces que la vida se sienta menos plana.",
-  "Porque me gustan nuestras historias.",
-  "Porque todavía siento que hay muchas más por vivir.",
-  "Porque tú sí inspiras regalos con alma.",
-  "Porque eres Mayra, and honestly that’s enough."
+  "Porque cuando dices “vamos leve” sé que probablemente terminaremos negociando el pace como si fuera tratado internacional.",
+  "Porque puedes terminar una corrida y aun así verte más arreglada que yo antes de salir de casa.",
+  "Porque contigo “una foto rápida” puede convertirse en una producción de 27 tomas… y sí, al final valió la pena.",
+  "Porque tu Virgo interior puede detectar un plan mal organizado a kilómetros de distancia.",
+  "Porque puedes amar correr, verte fashion y cantar Intocable en la misma personalidad sin que choque nada.",
+  "Porque cada vez que digo “tengo una idea” no huyes inmediatamente. Eso ya es amor o pésimo juicio.",
+  "Porque haces que un brunch se sienta como evento oficial del calendario.",
+  "Porque tienes talento para decir “estoy bien” con una cara que claramente dice que hay una presentación de PowerPoint pendiente.",
+  "Porque contigo hasta perder tiempo se siente como parte del itinerario.",
+  "Porque eres de esas personas que sí justifican hacer una página entera en GitHub para un cumpleaños.",
+  "Porque probablemente vas a criticar algún detallito de esta página y, peor aún, probablemente vas a tener razón.",
+  "Porque tu sentido de la moda hace que yo reevalúe cosas que cinco minutos antes juraba que se veían bien.",
+  "Porque puedes convertir una caminata normal en sesión de fotos sin previo aviso.",
+  "Porque cuando algo te emociona se te nota demasiado y esa versión tuya me encanta.",
+  "Porque haces que un viaje de tres días necesite más planeación que algunas empresas pequeñas.",
+  "Porque si hay café, comida rica, correr o una aventura, es bastante fácil convencerte.",
+  "Porque tienes ese balance raro entre tierna y capaz de destruirme con una sola mirada.",
+  "Porque tu sarcasmo llega en el momento exacto en que yo ya estaba hablando demasiadas mamadas.",
+  "Porque eres competitiva incluso cuando nadie anunció que era competencia.",
+  "Porque contigo “tranqui” casi nunca significa realmente tranqui.",
+  "Porque sabes exactamente cuándo necesitas un outfit nuevo para una ocasión que técnicamente no requería outfit nuevo.",
+  "Porque me haces querer planear cosas ridículamente específicas solo para verte emocionada.",
+  "Porque tienes amigas en CDMX y de alguna forma este regalo ya incluye hasta brunch DLC.",
+  "Porque tu reacción a una buena sorpresa vale todo el estrés de intentar que no descubras nada antes.",
+  "Porque puedes hacer que me preocupe por el restaurante, la música, el QR, el código, las fotos y todavía piense: sí, faltaba algo.",
+  "Porque contigo siempre termina existiendo un inside joke que nadie más entendería.",
+  "Porque eres la razón por la que “nomás un viaje” terminó siendo una experiencia con countdown y easter eggs.",
+  "Porque incluso cuando me desesperas poquito, cinco minutos después ya estoy pensando qué hacer contigo el siguiente fin.",
+  "Porque debajo de todos los chistes, planes y caos, la verdad simple es que me encanta compartir mi vida contigo."
 ];
 
 // ==========================================================
@@ -83,6 +119,8 @@ function runBootSequence() {
 setTimeout(runBootSequence, 500);
 
 enterBtn?.addEventListener("click", () => {
+  enteredExperience = true;
+  tryStartSoundtrack();
   introOverlay?.classList.add("hidden-overlay");
 });
 
@@ -162,7 +200,9 @@ function launchConfetti() {
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
-  const dpr = window.devicePixelRatio || 1;
+  if (!ctx) return;
+  if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
   canvas.width = innerWidth * dpr;
   canvas.height = innerHeight * dpr;
   canvas.style.width = innerWidth + "px";
@@ -170,7 +210,8 @@ function launchConfetti() {
   ctx.scale(dpr, dpr);
 
   const colors = ["#7f927d", "#617360", "#bea57b", "#d8c7a8", "#8ea28c", "#344037"];
-  const pieces = Array.from({ length: 140 }, () => ({
+  const particleCount = innerWidth < 600 ? 90 : 140;
+  const pieces = Array.from({ length: particleCount }, () => ({
     x: Math.random() * innerWidth,
     y: -20 - Math.random() * 220,
     w: 6 + Math.random() * 8,
