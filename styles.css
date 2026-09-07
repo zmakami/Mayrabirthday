@@ -1,5 +1,5 @@
 /* =====================================================================
-   MAYRA.exe — Birthday Edition V3
+   Mayra's 29th — Birthday Edition V3.3
    SAGE / CREAM / FOREST / GOLD
    ===================================================================== */
 
@@ -121,6 +121,11 @@ img{display:block;max-width:100%}
   border-radius:inherit;
   background:linear-gradient(90deg, var(--sage), var(--gold));
   transition:width .35s ease;
+}
+
+/* Extra breathing room between the completed loading bar and GO. */
+.intro-card #enterBtn{
+  margin-top:30px;
 }
 .hidden{display:none !important}
 
@@ -614,43 +619,9 @@ h1,h2,h3,h4{
 a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .btn{min-height:48px;min-width:48px}
 
-.soundtrack-section{padding-top:24px;padding-bottom:46px}
-.soundtrack-card{
-  border-radius:30px;
-  padding:24px;
-  display:grid;
-  grid-template-columns:.8fr 1.2fr;
-  gap:24px;
-  align-items:center;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 5% 20%,rgba(127,146,125,.12),transparent 20rem),
-    rgba(255,255,255,.62);
-}
-.soundtrack-copy h2{font-size:clamp(2.7rem,5vw,4rem);margin:7px 0 0;line-height:.95}
-.artist{margin:4px 0 0;color:var(--sage-deep);font-weight:700}
-.soundtrack-note{margin:14px 0 0;color:var(--muted);line-height:1.7}
-.spotify-wrap{min-width:0}
-.spotify-embed{
-  width:100%;
-  min-height:152px;
-}
-.spotify-embed iframe{
-  display:block;
-  width:100%;
-  border:0;
-  border-radius:14px;
-}
-.spotify-fallback{
-  margin:10px 2px 0;
-  color:var(--muted);
-  font-size:.82rem;
-  line-height:1.5;
-}
+
 
 @media (max-width:980px){
-  .soundtrack-card{grid-template-columns:1fr}
-  .soundtrack-copy{text-align:center}
   .hero-photo-stack{min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
   .frame-main{grid-column:1/-1;width:min(100%,430px);margin:0 auto}
   .mini-polaroid{position:relative;inset:auto;width:100%;min-width:0;transform:none!important}
@@ -671,8 +642,6 @@ a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   .countdown-grid{grid-template-columns:repeat(2,1fr)}
   .hero-photo-stack{gap:7px}
   .mini-polaroid{padding:6px 6px 10px;border-radius:12px}
-  .soundtrack-section{padding-top:14px}
-  .soundtrack-card{padding:20px 14px;border-radius:26px;gap:18px}
   .day-card{grid-template-columns:44px minmax(0,1fr);gap:12px}
   .day-body{min-width:0}
   .day-body .btn{width:100%}
@@ -686,4 +655,35 @@ a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* V3.3 — Mayra's 29th title + local audio control */
+.intro-title{
+  font-size:clamp(3rem,10vw,5.5rem);
+  white-space:normal;
+}
+
+.music-toggle{
+  position:fixed;
+  right:max(14px,env(safe-area-inset-right));
+  bottom:max(16px,env(safe-area-inset-bottom));
+  z-index:55;
+  width:46px;
+  height:46px;
+  border:1px solid rgba(52,64,55,.12);
+  border-radius:999px;
+  background:rgba(255,255,255,.84);
+  color:var(--forest);
+  box-shadow:0 10px 28px rgba(51,63,52,.16);
+  backdrop-filter:blur(14px);
+  font-size:1.05rem;
+  font-weight:800;
+  cursor:pointer;
+}
+.music-toggle.is-paused{
+  opacity:.68;
+}
+@media (max-width:680px){
+  .intro-card #enterBtn{margin-top:34px;}
+  .intro-title{font-size:clamp(2.85rem,15vw,4.5rem);}
 }

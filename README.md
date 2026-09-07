@@ -1,104 +1,68 @@
-# MAYRA.exe — V3.2 Mobile Final 🌿📱
+# Mayra's 29th — V3.3 Local Audio Final 🌿🎵
 
-Esta versión está optimizada para que Mayra la vea principalmente desde su celular.
+Esta versión deja el sitio listo para usar **audio local** sin mostrar ninguna caja de Spotify.
 
-## Qué cambia
+## Cambios principales
 
-- Se quitaron todos los textos internos de desarrollo.
-- El menú se oculta en móvil para que la página se sienta como una historia vertical.
-- Las polaroids ya no usan posiciones peligrosas en móvil: pasan a una fila responsive.
-- Los botones tienen tamaño cómodo para touch.
-- El confetti usa menos partículas en teléfono.
-- Las fotos de la galería usan lazy loading.
-- Se integró el reproductor oficial de Spotify de **Forever — Noah Kahan**.
-- No necesitas subir un MP3.
+- El título general ahora es **Mayra's 29th**.
+- Quité completamente la sección/reproductor visible de Spotify.
+- El botón **GO ✦** tiene más separación debajo de la barra de carga.
+- Al tocar **GO ✦**, el sitio intenta iniciar el audio local.
+- Las fotos siguen sin captions/descripciones visibles.
+- Hay un botón pequeño **♪** en la esquina para pausar/reanudar la música después de entrar.
 
-## Archivos que debes reemplazar en GitHub
+## Cómo nombrar la canción
 
-En tu repo `Mayrabirthday`, reemplaza:
+Pon el archivo de audio dentro de `assets/` con este nombre exacto:
 
 ```text
-index.html
-styles.css
-script.js
+forever.mp3
 ```
 
-No necesitas crear otro repositorio.
-
-## Fotos requeridas
-
-Dentro de `assets/` deben existir exactamente:
+La ruta final debe quedar:
 
 ```text
-hero-main.jpg
-polaroid-1.jpg
-polaroid-2.jpg
-polaroid-3.jpg
-gallery-large.jpg
-gallery-small-1.jpg
-gallery-small-2.jpg
+assets/forever.mp3
 ```
 
-GitHub distingue mayúsculas/minúsculas: `foto.JPG` y `foto.jpg` no son la misma ruta.
+Usa una copia de audio que tengas derecho a alojar. No necesitas modificar el código si respetas ese nombre.
 
-## Cómo actualizar tu GitHub Pages
-
-1. Entra a tu repo `Mayrabirthday`.
-2. `Add file` → `Upload files`.
-3. Sube los nuevos `index.html`, `styles.css` y `script.js`.
-4. Confirma **Commit changes**.
-5. Espera a que `Deployments → github-pages` tenga check verde.
-6. Tu URL seguirá siendo:
+## Tu carpeta debería verse así
 
 ```text
-https://zmakami.github.io/Mayrabirthday/
+Mayrabirthday/
+├── index.html
+├── styles.css
+├── script.js
+└── assets/
+    ├── forever.mp3
+    ├── hero-main.jpg
+    ├── polaroid-1.jpg
+    ├── polaroid-2.jpg
+    ├── polaroid-3.jpg
+    ├── gallery-large.jpg
+    ├── gallery-small-1.jpg
+    └── gallery-small-2.jpg
 ```
 
-## Spotify
+## Subirlo a GitHub
 
-La sección usa un embed oficial de Spotify de **Forever — Noah Kahan**. La canción comienza cuando Mayra toca Play en el reproductor; no se intenta autoplay porque iPhone suele bloquear audio automático.
+Reemplaza en tu repo actual:
 
-## Countdown
+- `index.html`
+- `styles.css`
+- `script.js`
 
-En `script.js` cambia esta línea si quieres usar la hora exacta del vuelo:
+Después entra a `assets/` y sube `forever.mp3`.
 
-```js
-const tripDate = "2026-09-13T09:00:00";
-```
+Haz **Commit changes**, espera el check verde de GitHub Pages y tu URL seguirá siendo la misma.
 
-## Las 29 razones
+## Prueba importante en iPhone
 
-En `script.js`, busca:
+1. Abre el sitio con datos móviles.
+2. Espera a que aparezca **GO ✦**.
+3. Toca GO.
+4. La canción debería comenzar al entrar.
+5. Comprueba el botón pequeño **♪** para pausar/reanudar.
 
-```js
-const reasons = [
-```
-
-y cambia las 29 frases por cosas personales.
-
-## Checklist antes del QR
-
-1. Abre la URL en tu celular.
-2. Apaga Wi‑Fi y pruébala con datos móviles.
-3. Confirma que carguen las 7 fotos.
-4. Dale Play a Forever.
-5. Comprueba el countdown.
-6. Recorre toda la página.
-7. Presiona `Unlock final surprise`.
-8. Confirma que aparezca `INTOCABLE`.
-9. Recarga una vez más.
-10. Ya con eso genera el QR final.
-
-El QR puede apuntar a la misma URL aunque después hagas cambios al contenido.
-
-
----
-
-# Cambios de V3.2
-
-- Botón inicial: `GO ✦`
-- Más espacio entre el texto/barra y el botón GO
-- Fotos sin captions ni descripciones
-- 29 razones más chistosas y específicas
-- `Forever — Noah Kahan` intenta iniciar al tocar GO
-- Si iPhone/Spotify lo bloquean, el reproductor queda visible como fallback
+Los navegadores móviles pueden comportarse distinto con audio, pero el código dispara `play()` directamente desde el toque de GO, que es la forma más compatible.

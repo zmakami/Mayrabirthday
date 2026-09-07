@@ -1,5 +1,5 @@
 // =====================================================================
-// MAYRA.exe — Birthday Edition V3.1 Mobile Final
+// Mayra's 29th — Birthday Edition V3.3 Local Audio
 // AQUÍ ESTÁN LAS PARTES MÁS FÁCILES DE EDITAR.
 // =====================================================================
 
@@ -9,42 +9,6 @@
 // Formato recomendado: YYYY-MM-DDTHH:MM:SS
 // ==========================================================
 const tripDate = "2026-09-13T09:00:00";
-
-// ------------------------------------------------------------
-// SPOTIFY SOUNDTRACK
-// Preloads before GO so the GO tap can directly call play().
-// ------------------------------------------------------------
-let spotifyController = null;
-let enteredExperience = false;
-
-window.onSpotifyIframeApiReady = (IFrameAPI) => {
-  const element = document.getElementById("spotifyEmbed");
-  if (!element) return;
-
-  IFrameAPI.createController(element, {
-    width: "100%",
-    height: "152",
-    uri: "spotify:track:0FlwhvrncUKrEAhzunmCKm"
-  }, (controller) => {
-    spotifyController = controller;
-    if (enteredExperience) tryStartSoundtrack();
-  });
-};
-
-function tryStartSoundtrack() {
-  const fallback = document.getElementById("spotifyFallback");
-  if (!spotifyController) {
-    fallback?.classList.remove("hidden");
-    return;
-  }
-  try {
-    spotifyController.play();
-    window.setTimeout(() => fallback?.classList.remove("hidden"), 1400);
-  } catch {
-    fallback?.classList.remove("hidden");
-  }
-}
-
 
 // ==========================================================
 // 29 THINGS I LOVE ABOUT YOU
@@ -118,10 +82,54 @@ function runBootSequence() {
 }
 setTimeout(runBootSequence, 500);
 
-enterBtn?.addEventListener("click", () => {
-  enteredExperience = true;
-  tryStartSoundtrack();
+const bgMusic = document.getElementById("bgMusic");
+const musicToggle = document.getElementById("musicToggle");
+
+async function startLocalSoundtrack() {
+  if (!bgMusic) return;
+
+  bgMusic.volume = 0.48;
+
+  try {
+    await bgMusic.play();
+    musicToggle?.classList.remove("hidden");
+    musicToggle?.classList.remove("is-paused");
+    musicToggle?.setAttribute("aria-label", "Pause music");
+    musicToggle?.setAttribute("aria-pressed", "true");
+  } catch (error) {
+    // If iOS/browser blocks playback or the file is missing,
+    // the page still works normally.
+    console.warn("Background audio could not start:", error);
+  }
+}
+
+enterBtn?.addEventListener("click", async () => {
+  // The play() call happens directly inside the user's GO tap,
+  // which gives mobile browsers the best chance of allowing audio.
+  await startLocalSoundtrack();
   introOverlay?.classList.add("hidden-overlay");
+});
+
+musicToggle?.addEventListener("click", async () => {
+  if (!bgMusic) return;
+
+  if (bgMusic.paused) {
+    try {
+      await bgMusic.play();
+      musicToggle.classList.remove("is-paused");
+      musicToggle.setAttribute("aria-label", "Pause music");
+      musicToggle.setAttribute("aria-pressed", "true");
+      musicToggle.textContent = "♪";
+    } catch (error) {
+      console.warn("Audio resume failed:", error);
+    }
+  } else {
+    bgMusic.pause();
+    musicToggle.classList.add("is-paused");
+    musicToggle.setAttribute("aria-label", "Play music");
+    musicToggle.setAttribute("aria-pressed", "false");
+    musicToggle.textContent = "♫";
+  }
 });
 
 // ==========================================================
