@@ -55,9 +55,9 @@ const bootSteps = [
   ["Initializing birthday protocol...", 16],
   ["Passenger found: MAYRA", 32],
   ["Checking surprise authorization...", 49],
-  ["Travel companion confirmed: DANIEL", 68],
-  ["Loading destination reveal...", 84],
-  ["Plan Maestro ready.", 100]
+  ["Travel companion confirmed: DANICARD", 68],
+  ["Loading destination...", 84],
+  ["The gift is ready.", 100]
 ];
 
 const introOverlay = document.getElementById("introOverlay");
