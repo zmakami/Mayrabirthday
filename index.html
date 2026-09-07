@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#7f927d" />
+  <title>Mayra.exe — Birthday Edition V3</title>
+
+  <!--
+    =====================================================================
+    MAYRA.exe — Birthday Edition V3
+    VERSIÓN ULTRA FINAL / EDITORIAL / SAGE GREEN / MOBILE FIRST
+
+    GUÍA RÁPIDA:
+    1) FOTOS:
+       Busca en este archivo:
+       - FOTO HERO
+       - FOTO POLAROID 1
+       - FOTO POLAROID 2
+       - FOTO POLAROID 3
+       - FOTO GALLERY LARGE
+       - FOTO GALLERY SMALL 1
+       - FOTO GALLERY SMALL 2
+
+    2) TEXTO:
+       Busca:
+       - EDITAR COPY
+       - EDITAR ITINERARIO
+       - EDITAR MENSAJE FINAL
+
+    3) LISTA "29 THINGS I LOVE ABOUT YOU":
+       Ve al archivo script.js y busca:
+       const reasons = [ ... ]
+       Ahí puedes editar fácilmente los 29 textos.
+
+    4) MÚSICA OPCIONAL:
+       Busca en este archivo:
+       - MÚSICA OPCIONAL
+       Si quieres agregar una canción, sigue la guía en el comentario.
+
+    5) FECHA DEL VIAJE / COUNTDOWN:
+       Ve a script.js y busca:
+       const tripDate = "2026-09-13T09:00:00"
+
+    IMPORTANTE:
+    - Coloca tus imágenes dentro de la carpeta /assets
+    - El sitio está optimizado para móvil y se ve muy bonito también en desktop.
+    =====================================================================
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="blur blur-a"></div>
+  <div class="blur blur-b"></div>
+
+  <div id="introOverlay" class="intro-overlay">
+    <div class="intro-card">
+      <p class="kicker">PRIVATE BIRTHDAY FILE · 2026</p>
+      <h1 class="intro-title">MAYRA<span>.exe</span></h1>
+      <p id="bootLine" class="boot-line">Initializing birthday protocol...</p>
+      <div class="progress-wrap">
+        <div id="bootBar" class="progress-bar"></div>
+      </div>
+      <button id="enterBtn" class="btn btn-primary hidden">OPEN PLAN MAESTRO</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="brand">MAYRA.exe</div>
+    <nav class="nav">
+      <a href="#story">Story</a>
+      <a href="#itinerary">Plan</a>
+      <a href="#reasons">29 Things</a>
+      <a href="#finale">Finale</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section hero">
+      <div class="hero-copy">
+        <p class="kicker">BIRTHDAY EDITION · DESIGNED FOR YOU</p>
+
+        <!-- EDITAR COPY: título principal -->
+        <h2>For the girl who deserves<br><span>something unforgettable.</span></h2>
+
+        <!-- EDITAR COPY: texto principal -->
+        <p class="lead">
+          Este año no quería regalarte solo algo bonito. Quería darte una experiencia.
+          Unos días con intención. Una ciudad con historia. Una cena especial.
+          Tiempo contigo. Tiempo con gente que quieres. Y una sorpresa final que estaba demasiado hecha para ti.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#destination" class="btn btn-primary">Reveal destination</a>
+          <a href="#gallery" class="btn btn-secondary">See our memories</a>
+        </div>
+
+        <div class="pill-row">
+          <div class="pill">Passenger: Mayra</div>
+          <div class="pill">Travel companion: Daniel</div>
+          <div class="pill">Status: armed ✈</div>
+        </div>
+
+        <div class="countdown-card">
+          <p class="small-label">COUNTDOWN TO TAKEOFF</p>
+          <div class="countdown-grid">
+            <div><strong id="days">--</strong><span>Days</span></div>
+            <div><strong id="hours">--</strong><span>Hours</span></div>
+            <div><strong id="minutes">--</strong><span>Minutes</span></div>
+            <div><strong id="seconds">--</strong><span>Seconds</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <!-- FOTO HERO:
+             Reemplaza assets/hero-main.jpg por una foto vertical fuerte.
+             Puede ser una foto de Mayra o una de ustedes dos.
+        -->
+        <div class="hero-photo-stack">
+          <figure class="frame frame-main">
+            <img src="assets/hero-main.jpg" alt="Main hero photo" />
+            <figcaption>Birthday Edition</figcaption>
+          </figure>
+
+          <!-- FOTO POLAROID 1 -->
+          <figure class="mini-polaroid polaroid-a">
+            <img src="assets/polaroid-1.jpg" alt="Polaroid memory 1" />
+            <figcaption>my favorite smile</figcaption>
+          </figure>
+
+          <!-- FOTO POLAROID 2 -->
+          <figure class="mini-polaroid polaroid-b">
+            <img src="assets/polaroid-2.jpg" alt="Polaroid memory 2" />
+            <figcaption>softest chaos</figcaption>
+          </figure>
+
+          <!-- FOTO POLAROID 3 -->
+          <figure class="mini-polaroid polaroid-c">
+            <img src="assets/polaroid-3.jpg" alt="Polaroid memory 3" />
+            <figcaption>chapter 29</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="story" class="section story">
+      <div class="section-head">
+        <p class="kicker">THE STORY</p>
+        <h2>A gift designed like a memory.</h2>
+        <p>
+          Quería que tu cumpleaños se sintiera como una experiencia completa:
+          bonita, planeada, elegante y muy tú.
+        </p>
+      </div>
+
+      <div class="story-grid">
+        <article class="soft-card">
+          <p class="mini-kicker">EDITAR COPY</p>
+          <h3>Why this trip</h3>
+          <p>
+            Porque contigo los mejores planes no se sienten como “planes”.
+            Se sienten como momentos que dan ganas de guardar.
+            Y esta vez quise armar uno desde cero, con intención.
+          </p>
+        </article>
+
+        <article class="soft-card">
+          <p class="mini-kicker">WHAT'S INSIDE</p>
+          <h3>A little of everything you love</h3>
+          <p>
+            Ciudad de México. Una cena linda. Desayuno con tus amigas.
+            Paseos, fotos, y una noche final con música que sé que te emociona.
+          </p>
+        </article>
+
+        <article class="soft-card">
+          <p class="mini-kicker">EDITAR COPY</p>
+          <h3>Not just a destination</h3>
+          <p>
+            No se trata solo de a dónde vamos. Se trata de cómo se va a sentir estar ahí contigo.
+            Esa es la parte más importante del regalo.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="destination" class="section destination">
+      <div class="destination-card">
+        <p class="kicker">DESTINATION UNLOCKED</p>
+
+        <!-- EDITAR COPY: destino -->
+        <h2>Ciudad de México</h2>
+
+        <!-- EDITAR COPY: fechas -->
+        <p class="destination-date">13 — 15 Septiembre · 2026</p>
+
+        <p class="destination-copy">
+          Una ciudad enorme, viva, rica en comida, momentos y energía.
+          Lo suficiente para escaparnos unos días y regresar con algo más que fotos.
+        </p>
+      </div>
+    </section>
+
+    <section id="gallery" class="section gallery">
+      <div class="section-head">
+        <p class="kicker">MEMORY BOARD</p>
+        <h2>Us, in pieces.</h2>
+        <p>Espacios listos para meter fotos bonitas de ustedes.</p>
+      </div>
+
+      <div class="gallery-layout">
+        <!-- FOTO GALLERY LARGE -->
+        <figure class="gallery-large">
+          <img src="assets/gallery-large.jpg" alt="Large memory photo" />
+          <figcaption>The kind of memories I want more of.</figcaption>
+        </figure>
+
+        <div class="gallery-side">
+          <!-- FOTO GALLERY SMALL 1 -->
+          <figure class="gallery-small">
+            <img src="assets/gallery-small-1.jpg" alt="Small memory photo 1" />
+            <figcaption>still my favorite energy</figcaption>
+          </figure>
+
+          <!-- FOTO GALLERY SMALL 2 -->
+          <figure class="gallery-small">
+            <img src="assets/gallery-small-2.jpg" alt="Small memory photo 2" />
+            <figcaption>soft days, loud laughs</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="itinerary" class="section itinerary">
+      <div class="section-head">
+        <p class="kicker">PLAN MAESTRO</p>
+        <h2>The birthday itinerary</h2>
+        <p>Bonito, limpio, ligero y especial. Just enough structure, just enough surprise.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="day-card">
+          <div class="day-number">01</div>
+          <div class="day-body">
+            <p class="mini-kicker">DOMINGO · SEPT 13</p>
+            <h3>The Arrival</h3>
+            <ul>
+              <!-- EDITAR ITINERARIO: DOMINGO -->
+              <li>✈️ Llegada a CDMX</li>
+              <li>🏨 Check-in y aterrizar con calma</li>
+              <li>🌿 Cena especial en <strong>Botánico</strong></li>
+              <li>🥂 Primera noche: bonita, tranquila, juntos</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="day-card">
+          <div class="day-number">02</div>
+          <div class="day-body">
+            <p class="mini-kicker">LUNES · SEPT 14</p>
+            <h3>Friends & City</h3>
+            <ul>
+              <!-- EDITAR ITINERARIO: LUNES -->
+              <li>☕ Desayuno con tus amigas</li>
+              <li>🏙️ Tiempo libre para pasear y explorar la ciudad</li>
+              <li>📸 Fotos bonitas y pequeños momentos espontáneos</li>
+              <li>✨ A soft day in a beautiful city</li>
+            </ul>
+          </div>
+        </article>
+
+        <article id="finale" class="day-card featured">
+          <div class="day-number">03</div>
+          <div class="day-body">
+            <p class="mini-kicker">MARTES · SEPT 15</p>
+            <h3>The Finale</h3>
+            <p class="hint">
+              Hay una última cosa que todavía no te había dicho...
+              porque este reveal merecía su propio momento.
+            </p>
+            <button id="unlockBtn" class="btn btn-primary">Unlock final surprise</button>
+
+            <div id="surprisePanel" class="surprise-panel hidden">
+              <p class="mini-kicker">SPECIAL GUEST UNLOCKED</p>
+
+              <!-- EDITAR COPY: sorpresa final -->
+              <h4>INTOCABLE</h4>
+              <p>🇲🇽 Zócalo · Noche mexicana · y nosotros ahí.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="reasons" class="section reasons">
+      <div class="section-head">
+        <p class="kicker">29 THINGS I LOVE ABOUT YOU</p>
+        <h2>A whole section just for you.</h2>
+        <p>
+          Esta parte se llena automáticamente desde <strong>script.js</strong>.
+          Ahí puedes editar las 29 razones una por una.
+        </p>
+      </div>
+
+      <div id="reasonsGrid" class="reasons-grid"></div>
+    </section>
+
+    <section class="section optional-music">
+      <div class="music-card">
+        <p class="mini-kicker">MÚSICA OPCIONAL</p>
+        <h3>Want to make it even more dramatic?</h3>
+        <p>
+          Si quieres, puedes agregar una canción de fondo manualmente.
+          En el README te explico cómo. No la dejé activada por default para que el sitio
+          siga siendo limpio y porque algunos navegadores bloquean autoplay.
+        </p>
+      </div>
+    </section>
+
+    <section class="section final-letter">
+      <div class="letter-card">
+        <p class="kicker">EDITAR MENSAJE FINAL</p>
+        <h2>Happy Birthday, Mayra</h2>
+
+        <!-- EDITAR MENSAJE FINAL -->
+        <p>
+          No importa cuántos lugares conozcamos. Lo que más me importa seguir coleccionando
+          son historias contigo. Quería regalarte algo que se sintiera pensado, especial y muy tú.
+          Ojalá esta sea solo una de muchas historias bonitas más.
+        </p>
+
+        <p class="signature">— Daniel</p>
+      </div>
+    </section>
+
+    <section class="section footer-board">
+      <div class="ticket-grid">
+        <article class="ticket-card">
+          <span>PASSENGER</span>
+          <strong>Mayra</strong>
+        </article>
+        <article class="ticket-card">
+          <span>DESTINATION</span>
+          <strong>CDMX</strong>
+        </article>
+        <article class="ticket-card">
+          <span>STATUS</span>
+          <strong>Ready ✈</strong>
+        </article>
+      </div>
+      <p class="footer-note">Made with love, intention, caffeine and suspiciously too much planning.</p>
+    </section>
+
+    <!--
+      MÚSICA OPCIONAL:
+      Si quieres agregar una canción local:
+      1) mete un archivo mp3 dentro de /assets, por ejemplo:
+         assets/song.mp3
+      2) descomenta este bloque:
+
+      <audio id="bgMusic" loop controls class="audio-player">
+        <source src="assets/song.mp3" type="audio/mpeg">
+      </audio>
+
+      También puedes moverlo donde tú quieras.
+    -->
+  </main>
+
+  <canvas id="confetti"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
