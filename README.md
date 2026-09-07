@@ -1,4 +1,4 @@
-# Mayra's 29th — V3.3 Local Audio Final 🌿🎵
+# Mayra's 29th — V3.3.1 Local Audio Final 🌿🎵
 
 Esta versión deja el sitio listo para usar **audio local** sin mostrar ninguna caja de Spotify.
 
@@ -66,3 +66,9 @@ Haz **Commit changes**, espera el check verde de GitHub Pages y tu URL seguirá 
 5. Comprueba el botón pequeño **♪** para pausar/reanudar.
 
 Los navegadores móviles pueden comportarse distinto con audio, pero el código dispara `play()` directamente desde el toque de GO, que es la forma más compatible.
+
+
+## Fix V3.3.1 — GO button
+
+The GO button now closes the intro immediately and starts audio in parallel.
+If `assets/forever.mp3` is missing, slow to load, or blocked by the browser, the page still opens normally.

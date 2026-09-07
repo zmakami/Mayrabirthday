@@ -1,5 +1,5 @@
 // =====================================================================
-// Mayra's 29th — Birthday Edition V3.3 Local Audio
+// Mayra's 29th — Birthday Edition V3.3.1 Local Audio Fix
 // AQUÍ ESTÁN LAS PARTES MÁS FÁCILES DE EDITAR.
 // =====================================================================
 
@@ -85,29 +85,45 @@ setTimeout(runBootSequence, 500);
 const bgMusic = document.getElementById("bgMusic");
 const musicToggle = document.getElementById("musicToggle");
 
-async function startLocalSoundtrack() {
+function markMusicAsPlaying() {
+  musicToggle?.classList.remove("hidden");
+  musicToggle?.classList.remove("is-paused");
+  musicToggle?.setAttribute("aria-label", "Pause music");
+  musicToggle?.setAttribute("aria-pressed", "true");
+  if (musicToggle) musicToggle.textContent = "♪";
+}
+
+function startLocalSoundtrack() {
   if (!bgMusic) return;
 
   bgMusic.volume = 0.48;
 
+  // IMPORTANT:
+  // Do NOT await play() here. Some mobile browsers can keep the
+  // playback promise pending while the media loads. The site must
+  // open immediately even if audio is slow, missing, or blocked.
   try {
-    await bgMusic.play();
-    musicToggle?.classList.remove("hidden");
-    musicToggle?.classList.remove("is-paused");
-    musicToggle?.setAttribute("aria-label", "Pause music");
-    musicToggle?.setAttribute("aria-pressed", "true");
+    const playAttempt = bgMusic.play();
+
+    if (playAttempt && typeof playAttempt.then === "function") {
+      playAttempt
+        .then(markMusicAsPlaying)
+        .catch((error) => {
+          console.warn("Background audio could not start:", error);
+        });
+    } else {
+      markMusicAsPlaying();
+    }
   } catch (error) {
-    // If iOS/browser blocks playback or the file is missing,
-    // the page still works normally.
     console.warn("Background audio could not start:", error);
   }
 }
 
-enterBtn?.addEventListener("click", async () => {
-  // The play() call happens directly inside the user's GO tap,
-  // which gives mobile browsers the best chance of allowing audio.
-  await startLocalSoundtrack();
+enterBtn?.addEventListener("click", () => {
+  // GO ALWAYS opens the experience immediately.
+  // Audio is attempted from this same user tap, but never blocks entry.
   introOverlay?.classList.add("hidden-overlay");
+  startLocalSoundtrack();
 });
 
 musicToggle?.addEventListener("click", async () => {
