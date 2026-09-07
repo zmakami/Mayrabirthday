@@ -652,6 +652,78 @@ a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   .section{width:min(100% - 20px,1180px)}
 }
 
+
+/* ============================================================
+   MOBILE POLAROID FIX
+   Keep the same floating composition as desktop, just scaled down.
+   ============================================================ */
+@media (max-width:680px){
+  .hero-photo-stack{
+    position:relative;
+    width:100%;
+    min-height:520px;
+    margin:0 auto;
+  }
+
+  .frame-main{
+    width:78%;
+    max-width:none;
+    margin:0 auto;
+  }
+
+  .polaroid-row{
+    display:contents;
+  }
+
+  .mini-polaroid{
+    position:absolute;
+    width:32%;
+    min-width:0;
+    padding:6px;
+    border-radius:13px;
+    z-index:2;
+  }
+
+  .mini-polaroid img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:9px;
+  }
+
+  .mini-polaroid figcaption{
+    display:none;
+  }
+
+  .polaroid-a{
+    left:0;
+    top:14%;
+    transform:rotate(-8deg);
+  }
+
+  .polaroid-b{
+    right:0;
+    top:42%;
+    transform:rotate(6deg);
+  }
+
+  .polaroid-c{
+    left:4%;
+    bottom:2%;
+    transform:rotate(-4deg);
+  }
+}
+
+@media (max-width:390px){
+  .hero-photo-stack{
+    min-height:485px;
+  }
+
+  .mini-polaroid{
+    width:33%;
+  }
+}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
